@@ -7,8 +7,12 @@ export default function Home() {
       <nav className="h-14 bg-white dark:bg-zinc-800 border-b">
         <Toggler />
       </nav>
-      <main className="m-5">
-        <CourseCard />
+      <main className="">
+        <CourseCard
+          title="Aplicaciones Móviles para Android."
+          subject="Desarrollo Móvil"
+          color="first"
+        />
       </main>
     </div>
   );
