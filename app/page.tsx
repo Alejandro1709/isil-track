@@ -1,19 +1,23 @@
 import CourseCard from "@/components/course-card";
-import { Toggler } from "@/components/toggler";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <nav className="h-14 bg-white dark:bg-zinc-800 border-b">
-        <Toggler />
-      </nav>
-      <main className="">
-        <CourseCard
-          title="Aplicaciones Móviles para Android."
-          subject="Desarrollo Móvil"
-          color="first"
-        />
-      </main>
-    </div>
+    <section className="flex flex-col flex-1 overflow-scroll">
+      <CourseCard
+        title="Aplicaciones Móviles para Android."
+        subject="Desarrollo Móvil"
+        color="first"
+      />
+      <CourseCard
+        title="Aplicaciones Móviles para IPhone."
+        subject="Desarrollo Móvil"
+        color="first"
+      />
+      <CourseCard
+        title="Soluciones Basadas en iot."
+        subject="Desarrollo Móvil"
+        color="first"
+      />
+    </section>
   );
 }
