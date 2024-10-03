@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toggler } from "@/components/toggler";
+import Navbar from "@/components/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,9 +37,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex flex-col min-h-screen">
-            <nav className="h-14 sticky top-0 bg-white dark:bg-zinc-800 border-b dark:border-b-zinc-700">
-              <Toggler />
-            </nav>
+            <Navbar />
             <main className="flex flex-1 flex-col">{children}</main>
           </div>
         </ThemeProvider>
