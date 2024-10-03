@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import StatusSelect from "./status-select";
+import { useSelectStore } from "@/stores/selectStore";
 
 function EditCourseModal({
   currentStatus,
@@ -22,10 +23,12 @@ function EditCourseModal({
   currentStatus: string;
   slug: string;
 }) {
-  const handleChangeStatus = async () => {
-    const dta = { status: "helloooo", slug };
+  const status = useSelectStore((state) => state.status);
 
-    const res = await fetch("/api/courses", {
+  const handleChangeStatus = async () => {
+    const dta = { status, slug };
+
+    await fetch("/api/courses", {
       method: "PATCH",
       body: JSON.stringify(dta),
     });

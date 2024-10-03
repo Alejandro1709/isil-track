@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import {
   Select,
   SelectContent,
@@ -9,9 +7,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSelectStore } from "@/stores/selectStore";
 
 function StatusSelect() {
-  const [status, setStatus] = useState<string>("x");
+  const status = useSelectStore((state) => state.status);
+  const setStatus = useSelectStore((state) => state.setStatus);
 
   return (
     <Select value={status} onValueChange={(e) => setStatus(e)}>
