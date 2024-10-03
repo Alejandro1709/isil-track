@@ -1,26 +1,16 @@
-function CourseCard({ title, subject, color }) {
-  type Color = { [key: string]: { name: string; hex: string } };
+import { getColor } from "@/utils/colors";
+import Link from "next/link";
 
-  const colors: Color = {
-    first: { name: "desarrollo-movil", hex: "#A1DAF8" },
-    second: { name: "desarrollo-aplicaciones", hex: "#0EBBEF" },
-    third: { name: "disenio-de-bd", hex: "#029FE3" },
-    fourth: { name: "idiomas", hex: "#0077B4" },
-  };
+type CourseCardType = {
+  title: string;
+  slug: string;
+  subject: string;
+  color: string;
+};
 
-  // "#F39689",
-  // "#E73B2C",
-  // "#F39202",
-  // "#FDC300",
-  // "#FFE163",
-  // "#0077B4",
-
-  const getColor = (clrName: string): string => {
-    return colors[clrName].hex;
-  };
-
+function CourseCard({ title, slug, subject, color }: CourseCardType) {
   return (
-    <article className="flex relative bg-white dark:bg-zinc-800 p-3 border-b">
+    <article className="flex relative bg-white dark:bg-zinc-800 p-3 border-b dark:border-b-zinc-700">
       <div
         className="absolute top-0 left-0 h-full w-4"
         style={{ backgroundColor: getColor(color) }}
@@ -30,9 +20,12 @@ function CourseCard({ title, subject, color }) {
           <h2 className="text-xl font-semibold">{title}</h2>
           <h3>{subject}</h3>
         </div>
-        <button className="dark:bg-zinc-600 p-2 rounded-md border dark:hover:bg-zinc-500 bg-slate-50 hover:bg-slate-100">
-          Detalle
-        </button>
+        <Link
+          href={`/courses/${slug}`}
+          className="dark:bg-zinc-600 p-2 rounded-md border dark:hover:bg-zinc-500 bg-slate-50 hover:bg-slate-100"
+        >
+          Details
+        </Link>
       </div>
     </article>
   );

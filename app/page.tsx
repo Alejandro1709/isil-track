@@ -1,19 +1,26 @@
 import CourseCard from "@/components/course-card";
-import { Toggler } from "@/components/toggler";
+import prisma from "@/lib/db";
 
-export default function Home() {
+export default async function Home() {
+  const subjects = await prisma.subject.findMany({
+    include: {
+      corses: true,
+    },
+  });
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <nav className="h-14 bg-white dark:bg-zinc-800 border-b">
-        <Toggler />
-      </nav>
-      <main className="">
-        <CourseCard
-          title="Aplicaciones Móviles para Android."
-          subject="Desarrollo Móvil"
-          color="first"
-        />
-      </main>
-    </div>
+    <section className="flex flex-col flex-1 overflow-scroll">
+      {subjects.map((subject) => {
+        return subject.corses.map((course) => (
+          <CourseCard
+            title={course.title}
+            slug={course.slug || ""}
+            subject={subject.title}
+            color={subject.theme}
+            key={course.id}
+          />
+        ));
+      })}
+    </section>
   );
 }
